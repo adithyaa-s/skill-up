@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import GeneralDetailsForm from './GeneralDetails';
+import { useNavigate } from 'react-router-dom';  // Make sure to import useNavigate
 
-
-const validDomains = ['gmail.com', 'yahoo.com', 'outlook.com','mail.com'];
+const validDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'mail.com'];
 
 const SignUp = ({ toggleForm }) => {
   const [email, setEmail] = useState('');
@@ -11,6 +11,8 @@ const SignUp = ({ toggleForm }) => {
   const [reenteredPassword, setReenteredPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showGeneralDetailsForm, setShowGeneralDetailsForm] = useState(false);
+
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,17 +43,39 @@ const SignUp = ({ toggleForm }) => {
       return;
     }
     setErrorMessage('');
-    setShowGeneralDetailsForm(true); 
+
+    const userData = {
+      email,
+      password,
+    };
+
+    fetch('http://localhost:8000/api/v1/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setShowGeneralDetailsForm(true);
+          navigate('/');
+        } else {
+          setErrorMessage('Signup failed. Please try again.');
+        }
+      })
+      .catch(() => {
+        setErrorMessage('An error occurred. Please try again.');
+      });
   };
 
   const handleGeneralDetailsSubmit = (details) => {
     console.log('General Details Submitted:', details);
-    // Navigate to the homepage or perform further actions
+
   };
 
   return (
     <div className="container">
-      
       {!showGeneralDetailsForm ? (
         <div>
           <h2>Sign Up</h2>

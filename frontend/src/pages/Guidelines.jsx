@@ -26,6 +26,8 @@ function Guidelines() {
       case 'dataanalyst':
         navigate('/dataanalyst');
         break;
+      case 'bot':
+        navigate('/Chatbot');
       default:
         // Handle cases where no role is selected (optional)
         alert('Please select a role to proceed.'); // Example placeholder
@@ -44,6 +46,7 @@ function Guidelines() {
         <option value="fsd">Full-Stack Development</option>
         <option value="gamedev">Game Development</option>
         <option value="dataanalyst">Data Analyst</option>
+        <option value="bot">Chatbot</option>
       </select>
       <button disabled={!selectedRole} onClick={handleNavigate}>
         Start Your Journey!

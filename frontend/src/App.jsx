@@ -13,6 +13,7 @@ import DataAnalystRoadmap from "./pages/Dataanalyst";
 import GameDevRoadmap from "./pages/Gamedeveloper";
 import MachineLearningRoadmap from "./pages/Machinelearning";
 import Aboutus from "./pages/Aboutus";
+import Chatbot from "./pages/Chatbot";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/gamedev" element={<GameDevRoadmap/>}/>
           <Route path="/machinelearning" element={<MachineLearningRoadmap/>}/>
           <Route path="/Aboutus" element={<Aboutus/>}/>
+          <Route path="/Chatbot" element={<Chatbot/>}/>
           <Route path="*" element = {<Nopage/>} />
         </Routes>
       </BrowserRouter>
