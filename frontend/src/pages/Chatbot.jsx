@@ -7,10 +7,10 @@ const Chatbot = () => {
 
   const sendMessage = async () => {
     try {
-      const res = await axios.post('/api/dialogflow', { message });
+      const res = await axios.post('http://localhost:8000/api/v1/users/generate', { domain: message });
       setResponse(res.data);
     } catch (error) {
-      console.error(error);
+      console.error('Error communicating with AI service:', error.message);
     }
   };
 
@@ -30,4 +30,3 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
-

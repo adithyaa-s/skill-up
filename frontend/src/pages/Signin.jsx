@@ -1,10 +1,10 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signin.css';
 
-
 const SignIn = ({ toggleForm, onSubmit }) => {
+  const navigate = useNavigate(); // Ensure this is inside the component function
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -23,51 +23,32 @@ const SignIn = ({ toggleForm, onSubmit }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify({email, password})
-      })
+        body: JSON.stringify({ email, password }),
+      });
       const data = await res.json();
-      setResponseMessage('Login Successful');
-    } catch (e){
+
+      if (res.status === 200) {
+        setResponseMessage('Login Successful');
+        setTimeout(() => {
+          navigate('/');
+        }, 1500); // Navigate to '/' after successful login
+      } else if(res.status === 404) {
+        setResponseMessage('User Not Found');
+      }
+
+    } catch (error) {
       setResponseMessage('Login Failed');
     }
-
-    if(responseMessage==="Login Successful"){
-      navigate('/');
-    }
-
-    // try {
-
-    //   const response = await fetch('http://localhost:8000/api/v1/users/login', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json',
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
-
-    //   console.log(response)
-
-    //   if (response.status === 200) {
-    //     const data = await response.json();
-    //     setResponseMessage(data.message);
-    //     onSubmit({ email, password });
-    //   } else {
-    //     setResponseMessage('The server denied our request.');
-    //   }
-    // } catch (error) {
-    //   setResponseMessage('Failed fetching from the API');
-    // }
   };
 
   return (
     <div className="container">
       <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <div className="input-group">
-          <label>Email:</label>
+          <label>Email</label>
           <input
             type="email"
             value={email}
@@ -79,7 +60,7 @@ const SignIn = ({ toggleForm, onSubmit }) => {
           />
         </div>
         <div className="input-group">
-          <label>Password:</label>
+          <label>Password</label>
           <input
             type="password"
             value={password}
@@ -95,11 +76,11 @@ const SignIn = ({ toggleForm, onSubmit }) => {
             {errorMessage}
           </p>
         )}
-        <button type="submit">Sign In</button>
+        <button type="submit" style={{ marginTop: "15px" , textAlign:"center", paddingTop:"8px"}}>Sign In</button>
       </form>
 
       <p className="toggle-link">
-        Dont have an account? <a href="/Signup" onClick={toggleForm}>Sign Up</a>
+        Don't have an account? <a href="/signup" onClick={toggleForm}>Sign Up</a>
       </p>
 
       {responseMessage && (
