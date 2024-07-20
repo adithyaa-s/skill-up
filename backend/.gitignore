@@ -1,4 +1,4 @@
-# Node.js
+"# Node.js
 node_modules/
 
 # Logs
@@ -23,4 +23,4 @@ logs
 .node_repl_history
 
 # Environment variables
-.env*
+.env*"
