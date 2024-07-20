@@ -1,0 +1,80 @@
+/* Navbar.css */
+
+.navbar {
+    top: 0;
+    left: 0; /* Removed unnecessary left positioning */
+    width: 100%; /* Ensures navbar spans the entire width */
+    position: fixed;
+    display: flex;
+    justify-content: space-evenly; /* Center navigation buttons */
+    align-items: center;
+    padding: 10px 0; /* Adjusted padding top and bottom */
+    background-color: rgb(95, 177, 150);
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Added logo styles */
+  .navbar img {
+    height: 50px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-left: 20px; /* Add margin for spacing */
+  }
+  
+  /* Navigation buttons (Home, Sign In, Guidelines) */
+  .navbutton {
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin: 0 10px; /* Add spacing between buttons */
+  }
+  
+  .navbutton:hover {
+    background-color: darkgray;
+  }
+  
+  /* Menu button */
+  .nav-menu-button {
+    background: transparent; /* Transparent background for aesthetics */
+    border: none;
+    padding: 0; /* Remove default padding */
+    cursor: pointer; /* Indicate clickable behavior */
+    margin-left:auto ; /* Position menu button at right end */
+  }
+  
+  /* Menu icon */
+  .menu-icon {
+    width: 24px; /* Adjust width as needed */
+    height: 24px; /* Adjust height as needed */
+  }
+  
+  /* Menu styles */
+  .nav-menu {
+    display: flex; 
+    flex-direction: column; 
+    position: absolute; 
+    top: calc(100% + 5px); 
+    right: 0; 
+    background-color: #fff; 
+    list-style: none; 
+    padding: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  
+  .nav-link {
+    color: #333; 
+    text-decoration: none; 
+    padding: 5px 10px; 
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #007bff; 
+  }
+  
