@@ -12,7 +12,7 @@ const NewsList = () => {
             setarticles(response.data.articles);
         }
         getArticles();
-    },[] )
+    }, [])
     return (
         <div>
             {articles.slice(0, 6).map(article => (

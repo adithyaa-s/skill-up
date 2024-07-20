@@ -31,7 +31,6 @@ export default function App() {
           <Route path="/gamedev" element={<GameDevRoadmap/>}/>
           <Route path="/machinelearning" element={<MachineLearningRoadmap/>}/>
           <Route path="/Aboutus" element={<Aboutus/>}/>
-
           <Route path="*" element = {<Nopage/>} />
         </Routes>
       </BrowserRouter>
