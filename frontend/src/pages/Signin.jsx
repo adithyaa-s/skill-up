@@ -28,9 +28,13 @@ const SignIn = ({ toggleForm, onSubmit }) => {
         body: JSON.stringify({email, password})
       })
       const data = await res.json();
-      setResponseMessage('Login Sucessfull');
+      setResponseMessage('Login Successful');
     } catch (e){
       setResponseMessage('Login Failed');
+    }
+
+    if(responseMessage==="Login Successful"){
+      navigate('/');
     }
 
     // try {
