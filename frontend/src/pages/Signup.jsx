@@ -81,7 +81,7 @@ const SignUp = ({ toggleForm }) => {
           <h2>Sign Up</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Email:</label>
+              <label>Email</label>
               <input
                 type="email"
                 value={email}
@@ -93,7 +93,7 @@ const SignUp = ({ toggleForm }) => {
               />
             </div>
             <div className="input-group">
-              <label>Password:</label>
+              <label>Password</label>
               <input
                 type="password"
                 value={password}
@@ -105,7 +105,7 @@ const SignUp = ({ toggleForm }) => {
               />
             </div>
             <div className="input-group">
-              <label>Re-enter Password:</label>
+              <label>Re-enter Password</label>
               <input
                 type="password"
                 value={reenteredPassword}

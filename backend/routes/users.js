@@ -1,40 +1,40 @@
 const express = require("express");
 const User = require("../model/users");
 const axios = require("axios");
-const { hashPassword , checkPassword } = require("../services/encryption");
+const { hashPassword, checkPassword } = require("../services/encryption");
 const { generateToken, checkToken } = require("../services/authentication");
 const router = express.Router();
 
-router.post("/login", async (req,res)=>{
-    try{
+router.post("/login", async (req, res) => {
+    try {
         console.log("Recieved POST Request at Users/login");
-        const {email , password} = req.body;
-        const existingUser = await User.findOne({email});
-        console.log(email,password);
-        if(!existingUser){
-            return res.status(404).json({"Message":"User Not Found"});
+        const { email, password } = req.body;
+        const existingUser = await User.findOne({ email });
+        console.log(email, password);
+        if (!existingUser) {
+            return res.status(404).json({ "Message": "User Not Found" });
         }
         const dbPassword = existingUser.password;
-        const passwordMatch = await checkPassword(password,dbPassword);
-        if(passwordMatch){
+        const passwordMatch = await checkPassword(password, dbPassword);
+        if (passwordMatch) {
             const token = await generateToken(existingUser);
             const auth = await checkToken(token);
-            return res.status(200).json({ message: 'Login successful'});
-        }else{
-            return res.status(400).json({"Message":"Incorrect Password"});
+            return res.status(200).json({ message: 'Login successful' });
+        } else {
+            return res.status(400).json({ "Message": "Incorrect Password" });
         }
-    } catch(error){
-        console.log("Error In Logging In",error);
+    } catch (error) {
+        console.log("Error In Logging In", error);
     }
 });
 
-router.post("/signup", async(req, res) =>{
-    try{
+router.post("/signup", async (req, res) => {
+    try {
         console.log("Recieved POST Request at Users/signup");
         const { email, password, firstname, lastname, college } = req.body;
-        const existingUser = await User.findOne({email});
-        if(existingUser){
-            return res.status(400).json({"Message":"User Already Exists"});
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ "Message": "User Already Exists" });
         }
         const hashedPassword = await hashPassword(password);
         const newUser = new User({
@@ -45,22 +45,39 @@ router.post("/signup", async(req, res) =>{
             college: college
         });
         await newUser.save();
-        res.status(201).json({"Message":"User Successfully Created"});
+        res.status(201).json({ "Message": "User Successfully Created" });
     }
-    catch(error){
-        console.log("Error in Signing Up: ",error);
+    catch (error) {
+        console.log("Error in Signing Up: ", error);
     }
 });
 
-router.post("/generate",async (req,res)=>{
-    try{
-        console.log("Recieved POST Request at Users/generate");
-        const {domain} = req.body;
-        const message = `Provide a detailed roadmap on the domain ${domain}. Refer to resources online. Be detailed and refer sources, courses and projects.`;
+router.post("/generate", async (req, res) => {
+    try {
+        console.log("Received POST Request at Users/generate");
+        const { domain } = req.body;
+        console.log(domain);
+        const message = {
+            contents: [
+                {
+                    role: "user",
+                    parts: [{ text: `Provide a detailed roadmap on the domain ${domain}. Refer to resources online. Be detailed and refer sources, courses and projects.` }]
+                }
+            ]
+        };
         const aiApi = 'AIzaSyDI4W6p1hL1Icl15zG2wMR8ueKdm3Nkw0Y';
-        const response = await axios.post(aiApi,{message});
-        return res.json(response.data);
-    } catch(error){
+        const headers = {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': aiApi
+        };
+        const apiEndpoint = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
+        const response = await axios.post(apiEndpoint, message, { headers });
+        const generatedContent = response.data.candidates[0].content;
+        return res.json({ generatedContent });
+        
+        // console.log(await response.data);
+        // return res.json(response.data);
+    } catch (error) {
         console.error('Error communicating with AI service:', error.message);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
