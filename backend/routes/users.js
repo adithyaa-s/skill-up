@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
 router.post("/signup", async (req, res) => {
     try {
         console.log("Recieved POST Request at Users/signup");
-        const { email, password, firstname, lastname, college } = req.body;
+        const { email, password, firstname, lastname, occupation, phonenumber } = req.body;
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ "Message": "User Already Exists" });
@@ -42,7 +42,8 @@ router.post("/signup", async (req, res) => {
             password: hashedPassword,
             firstname: firstname,
             lastname: lastname,
-            college: college
+            occupation: occupation,
+            phonenumber: phonenumber
         });
         await newUser.save();
         res.status(201).json({ "Message": "User Successfully Created" });
@@ -54,33 +55,58 @@ router.post("/signup", async (req, res) => {
 
 router.post("/generate", async (req, res) => {
     try {
-        console.log("Received POST Request at Users/generate");
-        const { domain } = req.body;
-        console.log(domain);
+      console.log("Received POST Request at /generate");
+      const { subtopics, openForMore } = req.body;
+      console.log(subtopics); 
+  
+      if(!openForMore){
         const message = {
-            contents: [
-                {
-                    role: "user",
-                    parts: [{ text: `Provide a detailed roadmap on the domain ${domain}. Refer to resources online. Be detailed and refer sources, courses and projects.` }]
-                }
-            ]
+          contents: [
+            {
+              role: "user",
+              parts: [{ text: `I have knowledge of these technolgies ${subtopics.join(', ')}.Let me know of career paths and more ways to master this. Please give me a career path or a roadmap that requires only these technolgies. Refer to resources online. Be detailed and refer sources, courses and projects.` }]
+            }
+          ]
         };
-        const aiApi = 'AIzaSyDI4W6p1hL1Icl15zG2wMR8ueKdm3Nkw0Y';
-        const headers = {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': aiApi
+      }
+
+      else if(openForMore==1){
+        const message = {
+          contents: [
+            {
+              role: "user",
+              parts: [{ text: `I have knowledge of these technolgies ${subtopics.join(', ')}.  I'm willing to learn additional related technologies if that can lead to more career paths. Please give me a career path or a roadmap. Refer to resources online. Be detailed and refer sources, courses and projects.` }]
+            }
+          ]
         };
-        const apiEndpoint = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
-        const response = await axios.post(apiEndpoint, message, { headers });
-        const generatedContent = response.data.candidates[0].content;
-        return res.json({ generatedContent });
-        
-        // console.log(await response.data);
-        // return res.json(response.data);
-    } catch (error) {
-        console.error('Error communicating with AI service:', error.message);
-        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      else if(openForMore==2){
+      const message = {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: `Provide a detailed roadmap on the subtopics: ${subtopics.join(', ')}. Refer to resources online. Be detailed and refer sources, courses and projects.` }]
+          }
+        ]
+      };
     }
-});
+  
+      const aiApi = 'AIzaSyDI4W6p1hL1Icl15zG2wMR8ueKdm3Nkw0Y';
+      const headers = {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': aiApi
+      };
+      const apiEndpoint = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
+      const response = await axios.post(apiEndpoint, message, { headers });
+      const generatedContent = response.data.candidates[0].content;
+      console.log(generatedContent.parts);
+      return res.status(200).json( generatedContent );
+    } catch (error) {
+      console.error('Error communicating with AI service:', error.message);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+  
 
 module.exports = router;

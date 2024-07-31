@@ -16,8 +16,12 @@ const UserModal = mongoose.Schema({
         type:String,
         required:true
     },
-    college:{
+    occupation:{
         type:String
+    },
+    phonenumber: {
+        type:Number,
+        unique:true
     }
 });
 
