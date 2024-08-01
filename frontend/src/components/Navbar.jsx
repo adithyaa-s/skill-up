@@ -1,42 +1,44 @@
-import React, { useState } from 'react';
+// src/components/NavBar.jsx
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import your CSS styles
+import '../styles/NavBar.css';
+import profileImage from '../assets/profile.png'; // Ensure this path is correct
 
-export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for menu visibility
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const menuItems = [
-    { label: 'Profile', path: '/profile' },
-    { label: 'My Roadmap', path: '/my-roadmap' },
-    { label: 'About Us', path: '/Aboutus' },
-  ];
-
+const NavBar = () => {
   return (
     <nav className="navbar">
-      <img src="./src/images/skilluplogo.jpeg" alt="SkillUp Logo" className="nav-logo" />
-      <Link to="/home"><button className="navbutton">Home</button></Link>
-      <Link to="/signin"><button className="navbutton">SignIn</button></Link>
-      <Link to="/guide"><button className="navbutton">Guidelines</button></Link>
-      <button className="nav-menu-button" onClick={toggleMenu}>
-        <img src="./src/images/menulogo.png" alt="Menu Icon" className="menu-icon" /> {/* Menu icon image */}
-      </button>
-      {isMenuOpen && (
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          Skill Up
+        </Link>
         <ul className="nav-menu">
-          {menuItems.map((item) => (
-            <li key={item.label}>
-              <Link to={item.path} className="nav-link">
-                {item.label}
-              </Link>
-            </li>
-          ))}
+          <li className="nav-item">
+            <Link to="/" className="nav-links">
+              Explore
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/guide" className="nav-links">
+              Guidelines
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/aboutus" className="nav-links">
+              About Us
+            </Link>
+          </li>
         </ul>
-      )}
-      {/* Existing Navigation Links */}
-      
+        <div className="auth-buttons">
+          <Link to="/signin" className="auth-button left-half">SIGN IN</Link>
+          <Link to="/signup" className="auth-button right-half">SIGN UP</Link>
+        </div>
+        <div className="profile-image-container">
+          <img src={profileImage} alt="Profile" className="profile-image" />
+        </div>
+      </div>
     </nav>
   );
-}
+};
+
+export default NavBar;

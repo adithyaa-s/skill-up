@@ -1,0 +1,9 @@
+/* src/HomePage.css */
+.home-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    background-color:  #c5e3b6;
+  }
+  

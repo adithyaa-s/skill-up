@@ -1,13 +1,12 @@
-import React from "react";
-import { Navigate } from 'react-router-dom';
-import { Navbar } from '../components/Navbar';
 
+import '../styles/Nopage.css';
 
-
-
-export default function Nopage() {
+const Nopage = () => {
     return(
-        <h1>Error 404 : Page not found</h1>
-    )
-
+        <div className="nopage-container">
+            <h1>Error 404: Page not found</h1>
+        </div>
+    );
 }
+
+export default Nopage;

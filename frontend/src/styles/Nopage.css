@@ -1,0 +1,14 @@
+.nopage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #c5e3b6; /* Matching the theme's background color */
+    color: #2e4c2d; /* Dark green text color for contrast */
+    font-family: Arial, sans-serif; /* Basic, clean font */
+}
+
+.nopage-container h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}

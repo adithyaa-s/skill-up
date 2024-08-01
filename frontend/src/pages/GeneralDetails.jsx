@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 // eslint-disable-next-line react/prop-types
-const GeneralDetails = ({ onNext }) => {
+const GeneralDetails = () => {
   const navigate = useNavigate(); 
 
   const [fullName, setFullName] = useState('');
@@ -15,7 +15,7 @@ const GeneralDetails = ({ onNext }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const details = {
+    const userData = {
       fullName,
       address,
       phoneNumber,
@@ -24,11 +24,23 @@ const GeneralDetails = ({ onNext }) => {
       preferredRole,
     };
 
-    
-    if (onNext) {
-      onNext(details);
-      navigate('/');
-    } 
+    fetch('http://localhost:8000/api/v1/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          navigate('/');
+        } else {
+          console.error('Signup failed. Please try again.');
+        }
+      })
+      .catch(() => {
+        console.error('An error occurred. Please try again.');
+      });
   };
 
   return (
@@ -98,10 +110,10 @@ const GeneralDetails = ({ onNext }) => {
             />
           </div>
         )}
-        <button type="submit">Next</button>
+        <button type="submit" className="submitbutton" style={{marginTop:"15px" , textAlign:"center", paddingTop:"8px"}} >Next</button>
       </form>
     </div>
   );
 };
-
+ 
 export default GeneralDetails;

@@ -1,58 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import for using useNavigate hook
-import { Navbar } from '../components/Navbar';
-function Guidelines() {
-  const [selectedRole, setSelectedRole] = useState(''); // State to manage user selection
-  const navigate = useNavigate(); // Hook for programmatic navigation
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/Guidelines.css';
 
-  const handleRoleChange = (event) => {
-    setSelectedRole(event.target.value);
-  };
-
-  const handleNavigate = () => {
-    switch (selectedRole || '') { // Use empty string as default for preferredRole
-      case 'ai':
-        navigate('/machinelearning');
-        break;
-      case 'cybersecurity':
-        navigate('/cybersecurity');
-        break;
-      case 'fsd':
-        navigate('/fullstack');
-        break;
-      case 'gamedev':
-        navigate('/gamedev');
-        break;
-      case 'dataanalyst':
-        navigate('/dataanalyst');
-        break;
-      case 'bot':
-        navigate('/Chatbot');
-      default:
-        // Handle cases where no role is selected (optional)
-        alert('Please select a role to proceed.'); // Example placeholder
-    }
-  };
-
+const Guidelines = () => {
   return (
-    
-    <div>
-      <Navbar/>
-      <h1>Welcome! Choose your preferred development path:</h1>
-      <select id="roleSelect" value={selectedRole} onChange={handleRoleChange}>
-        <option value="">-- Select a Role --</option>
-        <option value="ai">Machine Learning (AI)</option>
-        <option value="cybersecurity">Cybersecurity</option>
-        <option value="fsd">Full-Stack Development</option>
-        <option value="gamedev">Game Development</option>
-        <option value="dataanalyst">Data Analyst</option>
-        <option value="bot">Chatbot</option>
-      </select>
-      <button disabled={!selectedRole} onClick={handleNavigate}>
-        Start Your Journey!
-      </button>
+    <div className="guidelines">
+      <div className="guidelines-container">
+        <h1>Start Your Journey</h1>
+        <p className="intro-text">Explore opportunities to enhance your skills and customize your learning path to achieve your personal and professional goals.</p>
+        <div className="cards-container">
+          <Link to="/predefinedroadmap" className="guidelines-card">
+            <h2>Kickstart a New Skill</h2>
+            <p>Embark on your learning journey with a fresh new skill. Our carefully curated courses will help you get started and guide you through the process. Begin now and unlock new opportunities for growth and success.</p>
+          </Link>
+          <Link to="/customizedroadmap" className="guidelines-card">
+            <h2>Tailor Your Learning Path</h2>
+            <p>Customize your educational journey to match your goals and aspirations. Explore a variety of learning paths designed to fit different career objectives and interests. Personalize your path to maximize your potential and achieve your ambitions.</p>
+          </Link>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Guidelines;

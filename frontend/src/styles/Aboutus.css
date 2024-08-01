@@ -1,0 +1,51 @@
+.about-us {
+    background-color: #f0f5ee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+  }
+  
+  .about-us-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 20px; /* Add some horizontal padding for better presentation */
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h1, .card h2 {
+    color: #2e4c2d; /* Use a dark green for text color */
+  }
+  
+  .card p, .card ul {
+    color: #2e4c2d; /* Use a dark green for text color */
+  }
+  
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .card ul li i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #c3c8cd;
+  }
+  

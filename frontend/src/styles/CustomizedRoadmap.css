@@ -1,0 +1,103 @@
+.customized-roadmap {
+  font-family: Arial, sans-serif; /* Adjust as needed */
+  padding: 20px;
+  text-align: center; /* Center-align the main content */
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.subtopics-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 10px; /* Spacing between buttons */
+  justify-content: center; /* Center-align grid items */
+  margin-bottom: 20px; /* Space below the grid */
+}
+
+.option-button {
+  background-color: #52dbe4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.option-button.selected {
+  background-color: #007bff; 
+  color: white;
+  border-color: #007bff;
+}
+
+.start-button {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.start-button:hover {
+  background-color: #0056b3; 
+}
+
+.response-container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.tick-container {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 20px;
+  font-size: 14px; /* Smaller font size for better alignment */
+  color: #333; /* Adjust color as needed */
+}
+
+.tick-container label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; }
+
+.tick-container input[type="checkbox"] {
+  margin-left: 5px; 
+}
+
+.button-row {
+  display: flex;
+  justify-content: center; 
+  gap: 10px; 
+}
+
+.clear-button {
+  background-color: #f44336; 
+  color: white;
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  margin-bottom: 30px;
+  text-align: center; 
+}
+
+.clear-button:hover {
+  background-color: #d32f2f; 
+}

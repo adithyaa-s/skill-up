@@ -1,0 +1,83 @@
+.container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    color: #2e4c2d; 
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .input-group {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #2e4c2d; 
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2e4c2d; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #244022; 
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .response-message {
+    color: #2e4c2d; 
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .toggle-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .toggle-link a {
+    color: #2e4c2d; 
+    text-decoration: none;
+  }
+  
+  .toggle-link a:hover {
+    text-decoration: underline;
+  }
+  

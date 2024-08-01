@@ -1,8 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signin.css';
+import '../styles/Signin.css';
 
-const SignIn = ({ toggleForm, onSubmit }) => {
+// eslint-disable-next-line react/prop-types
+const SignIn = ({ toggleForm }) => {
   const navigate = useNavigate(); // Ensure this is inside the component function
 
   const [email, setEmail] = useState('');
@@ -27,13 +29,12 @@ const SignIn = ({ toggleForm, onSubmit }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-      const data = await res.json();
 
       if (res.status === 200) {
         setResponseMessage('Login Successful');
         setTimeout(() => {
           navigate('/');
-        }, 1500); // Navigate to '/' after successful login
+        }, 1500); 
       } else if(res.status === 404) {
         setResponseMessage('User Not Found');
       }
@@ -80,7 +81,7 @@ const SignIn = ({ toggleForm, onSubmit }) => {
       </form>
 
       <p className="toggle-link">
-        Don't have an account? <a href="/signup" onClick={toggleForm}>Sign Up</a>
+        Don&apos;t have an account? <a href="/signup" onClick={toggleForm}>Sign Up</a>
       </p>
 
       {responseMessage && (
