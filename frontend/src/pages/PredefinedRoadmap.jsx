@@ -85,8 +85,13 @@ const PredefinedRoadmap = () => {
 
   const handleStartJourney = async () => {
     try {
-      const roadmap = { subtopics: [customSelectedSubtopic[selectedDomain]] };
-      const response = await axios.post('/api/ai-response', { option: selectedOption, roadmap });
+      const roadmap = { subtopics: selectedOption, roadmap };
+      const response = await fetch('http://localhost:8000/api/v1/users/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(roadmap),
+      });
+      //const response = await axios.post('http://localhost:8000/api/v1/users/generate', { option: selectedOption, roadmap });
       setResponse(response.data.message);
     } catch (error) {
       console.error('Error fetching AI response:', error);
