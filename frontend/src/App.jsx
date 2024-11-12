@@ -13,6 +13,8 @@ import Guidelines from "./pages/Guidelines";
 import PredefinedRoadmap from "./pages/PredefinedRoadmap";
 import CustomizedRoadmap from "./pages/CustomizedRoadmap";
 import GeneratedAnswer from "./pages/GeneratedAnswer";
+import Dashboard from './pages/Dashboard';
+import ProfilePage from './pages/ProfilePage';
 
 
 const App = () => {
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/customizedroadmap" element = {<CustomizedRoadmap/>} />
         <Route path="/generated-answer" element = {<GeneratedAnswer/>} />
         <Route path="/aboutus" element={<Aboutus/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/profilepage' element={<ProfilePage/>}/>
         <Route path="*" element = {<Nopage/>} />
       </Routes>
     </Router>

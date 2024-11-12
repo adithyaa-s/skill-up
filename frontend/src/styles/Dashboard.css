@@ -1,0 +1,67 @@
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-info h2 {
+    color: #2c3e50;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+    color: #34495e;
+  }
+  
+  .recently-played {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recently-played h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .video-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .video-item h4 {
+    color: #34495e;
+    font-size: 16px;
+  }
+  
+  .watch-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .watch-link:hover {
+    color: #2980b9;
+  }
+  
+  .video-item:last-child {
+    border-bottom: none;
+  }
+  

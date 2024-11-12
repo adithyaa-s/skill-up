@@ -1,12 +1,14 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewsCard from '../components/NewsCard';
 import '../styles/HomePage.css';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [articles, setArticles] = useState([]);
   const [randomIndices, setRandomIndices] = useState([]);
+  const [lastActiveTime, setLastActiveTime] = useState(Date.now());
+  const navigate = useNavigate(); // Used for navigation after timeout
 
   const getRandomIndices = (num, max) => {
     const indices = new Set();
@@ -15,6 +17,32 @@ const HomePage = () => {
     }
     return Array.from(indices);
   };
+
+  const handleUserActivity = () => {
+    setLastActiveTime(Date.now()); // Reset last active time on user activity
+  };
+
+  useEffect(() => {
+    // Add event listeners for user activity (mouse move, key press)
+    window.addEventListener('mousemove', handleUserActivity);
+    window.addEventListener('keypress', handleUserActivity);
+
+    // Check idle time every second
+    const interval = setInterval(() => {
+      const idleTime = Date.now() - lastActiveTime;
+      if (idleTime > 1800000) { 
+        alert('Session timed out. Please log in again.');
+        navigate('/signin'); // Redirect to Sign In page
+      }
+    }, 1000); 
+
+    return () => {
+      // Cleanup listeners on component unmount
+      clearInterval(interval);
+      window.removeEventListener('mousemove', handleUserActivity);
+      window.removeEventListener('keypress', handleUserActivity);
+    };
+  }, [lastActiveTime, navigate]);
 
   useEffect(() => {
     const getArticles = async () => {

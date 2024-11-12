@@ -1,5 +1,3 @@
-// src/components/NavBar.jsx
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
@@ -24,6 +22,11 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/dashboard" className="nav-links">
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link to="/aboutus" className="nav-links">
               About Us
             </Link>
@@ -33,9 +36,9 @@ const NavBar = () => {
           <Link to="/signin" className="auth-button left-half">SIGN IN</Link>
           <Link to="/signup" className="auth-button right-half">SIGN UP</Link>
         </div>
-        <div className="profile-image-container">
+        <Link to="/profilepage" className="profile-image-container">
           <img src={profileImage} alt="Profile" className="profile-image" />
-        </div>
+        </Link>
       </div>
     </nav>
   );
